@@ -8,4 +8,3 @@ package { "epel-release":
 
 -> class { redis: }
 
-include consul

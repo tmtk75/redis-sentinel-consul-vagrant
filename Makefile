@@ -1,8 +1,11 @@
-playbook: ssh-config
+playbook: roles
 	ansible-playbook -i hosts.ini playbook.yml
 
-ssh-config:
-	vagrant ssh-config > ssh-config
+roles:
+	ansible-galaxy install -r requirements.yml --force
+
+join:
+	ansible -i hosts.ini -m shell all -l node2,node3 -a "/usr/local/sbin/consul join 172.21.0.101"
 
 .e/bin/ansible:
 	.e/bin/pip install ansible

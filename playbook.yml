@@ -1,15 +1,14 @@
 - hosts:
   - all
-  sudo: True
-  gather_facts: True
+  sudo: true
+  gather_facts: true
   vars:
 
   roles:
+  - {role: consul, advertise_addr: "{{ ansible_ssh_host }}" }
+  - consul-template
+  - dnsmasq
 
   tasks:
-  - name: Install default packages
-    yum: name={{ item }} state=latest
-    with_items:
-     - vim-enhanced
 
   handlers:

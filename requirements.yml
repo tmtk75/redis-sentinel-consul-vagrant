@@ -1,0 +1,15 @@
+# from galaxy
+- src: https://github.com/tmtk75/ansible-consul
+  version: master
+  name: consul
+  path: roles
+
+- src: https://github.com/tmtk75/ansible-dnsmasq
+  version: master
+  name: dnsmasq
+  path: roles
+
+- src: https://github.com/tmtk75/ansible-consul-template
+  version: master
+  name: consul-template
+  path: roles
