@@ -1,0 +1,11 @@
+{
+  "service": {
+    "name": "redis",
+    "tags": [],
+    "port": 6379,
+    "check": {
+      "script": "/usr/bin/redis-cli -p 6379 ping >/dev/null 2>&1",
+      "interval": "5s"
+    }
+  }
+}

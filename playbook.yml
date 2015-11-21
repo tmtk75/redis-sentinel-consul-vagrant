@@ -5,10 +5,24 @@
   vars:
 
   roles:
-  - {role: consul, advertise_addr: "{{ ansible_ssh_host }}" }
+  - {role: consul, server: true, advertise_addr: "{{ ansible_ssh_host }}" }
   - consul-template
   - dnsmasq
 
   tasks:
+  - name: /etc/consul.d/*.json
+    template: src=./templates/{{ item }}.json dest=/etc/consul.d/{{ item }}.json
+    with_items:
+    - redis
+    notify:
+      - reload consul
+    tags:
+      - consul-conf
+      - consul-conf.service
 
   handlers:
+  - name: reload consul
+    action: service name=consul state=reloaded
+
+  - name: reload consul-template
+    action: service name=consul-template state=reloaded
